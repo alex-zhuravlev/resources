@@ -51,16 +51,21 @@
     <Compile Include="ColorResourceForm.Designer.cs">
       <DependentUpon>ColorResourceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\tmSingleton.cs" />
     <Compile Include="RandomResourceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RandomResourceForm.Designer.cs">
       <DependentUpon>RandomResourceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResourceBlock\ResourceBlockManager.cs" />
     <Compile Include="ResourceBlock\RandomResourceBlock.cs" />
     <Compile Include="ResourceBlock\ResourceBlock.cs" />
     <Compile Include="ResourceBlock\ColorResourceBlock.cs" />
     <Compile Include="ResourceBlock\TextResourceBlock.cs" />
+    <Compile Include="ResourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Resources.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -79,6 +79,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ColorResourceForm";
             this.Text = "ColorResource";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ColorResourceForm_FormClosing);
             this.Load += new System.EventHandler(this.ColorResourceForm_Load);
             this.Shown += new System.EventHandler(this.ColorResourceForm_Shown);
             this.groupBox1.ResumeLayout(false);

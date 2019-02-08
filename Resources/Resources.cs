@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Resources.Core;
 
 namespace Resources
 {
     public partial class Resources : Form
     {
-        private List<ResourceBlock> m_aResourceBlocks = new List<ResourceBlock>();
+        public delegate void OnChildFormClosed(ResourceForm f);
 
         public Resources()
         {
@@ -34,6 +35,7 @@ namespace Resources
             }
 
             ResourceBlock newBlock = null;
+            ResourceForm newForm = null;
             switch (tabControl_add.SelectedIndex)
             {
                 case 0: // Text
@@ -41,7 +43,8 @@ namespace Resources
 
                     TextResourceForm textForm = new TextResourceForm();
                     textForm.ResourceBlock = newBlock;
-                    textForm.Show();
+                    textForm.OnClose = OnResourceFormClosed;
+                    newForm = textForm;
                     break;
 
                 case 1: // Color
@@ -50,7 +53,8 @@ namespace Resources
 
                     ColorResourceForm colorForm = new ColorResourceForm();
                     colorForm.ResourceBlock = newBlock;
-                    colorForm.Show();
+                    colorForm.OnClose = OnResourceFormClosed;
+                    newForm = colorForm;
                     break;
 
                 case 2: // Random
@@ -58,7 +62,8 @@ namespace Resources
 
                     RandomResourceForm randomForm = new RandomResourceForm();
                     randomForm.ResourceBlock = newBlock;
-                    randomForm.Show();
+                    randomForm.OnClose = OnResourceFormClosed;
+                    newForm = randomForm;
                     break;
 
                 default:
@@ -70,7 +75,9 @@ namespace Resources
             textBox_add.Clear();
 
             // Add
-            m_aResourceBlocks.Add(newBlock);
+            tmSingleton<ResourceBlockManager>.Instance.AddRecord(newBlock, newForm);
+            newForm.Show();
+
             ConsoleLog(String.Format("Added new resource block: {0}", newBlock.GetFullDescription()));
 
             UpdateResourcesList();
@@ -80,17 +87,28 @@ namespace Resources
         {
             if (listBox_resources.SelectedIndices.Count == 0) return;
 
-            for (int i = listBox_resources.SelectedIndices.Count - 1; i >= 0; i--)
-            {
-                int iIndex = listBox_resources.SelectedIndices[i];
-                string sConsoleString = m_aResourceBlocks[iIndex].GetFullDescription();
+            if (listBox_resources.SelectedIndices.Count > 1)
+                throw new NotImplementedException();
 
-                m_aResourceBlocks.RemoveAt(iIndex);
+            int iIndex = listBox_resources.SelectedIndices[0];
 
-                ConsoleLog(String.Format("Removed resource block: {0}", sConsoleString));
-            }
+            string sConsoleString = tmSingleton<ResourceBlockManager>.Instance.GetResourceBlock(iIndex).GetFullDescription();
+            tmSingleton<ResourceBlockManager>.Instance.RemoveRecordAt(iIndex);
 
-            GC.Collect();
+            ConsoleLog(String.Format("Removed resource block: {0}", sConsoleString));
+
+            UpdateResourcesList();
+        }
+
+        private void OnResourceFormClosed(ResourceForm form)
+        {
+            ResourceBlock block = tmSingleton<ResourceBlockManager>.Instance.GetResourceBlock(form);
+            if (block == null) return;
+
+            string sConsoleString = block.GetFullDescription();
+            tmSingleton<ResourceBlockManager>.Instance.RemoveRecord(form);
+
+            ConsoleLog(String.Format("Removed resource block: {0}", sConsoleString));
 
             UpdateResourcesList();
         }
@@ -99,9 +117,11 @@ namespace Resources
         {
             listBox_resources.Items.Clear();
 
-            for (int i = 0; i < m_aResourceBlocks.Count; i++)
+            List<string> aDescriptions = tmSingleton<ResourceBlockManager>.Instance.GetTextListForBox();
+
+            for (int i = 0; i < aDescriptions.Count; i++)
             {
-                listBox_resources.Items.Add(String.Format("N{0} - {1}", i + 1, m_aResourceBlocks[i].GetFullDescription()));
+                listBox_resources.Items.Add(String.Format("N{0} - {1}", i + 1, aDescriptions[i]));
             }
         }
 
@@ -112,10 +132,9 @@ namespace Resources
 
         private void button_remove_all_Click(object sender, EventArgs e)
         {
-            m_aResourceBlocks.Clear();
-            UpdateResourcesList();
+            tmSingleton<ResourceBlockManager>.Instance.Clear();
 
-            GC.Collect();
+            UpdateResourcesList();
 
             ConsoleLog("Removed all resource blocks.");
         }

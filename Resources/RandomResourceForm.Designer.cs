@@ -70,6 +70,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "RandomResourceForm";
             this.Text = "RandomResourceForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RandomResourceForm_FormClosing);
             this.Load += new System.EventHandler(this.RandomResourceForm_Load);
             this.Shown += new System.EventHandler(this.RandomResourceForm_Shown);
             this.groupBox1.ResumeLayout(false);

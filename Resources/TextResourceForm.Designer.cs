@@ -92,6 +92,7 @@
             this.Controls.Add(this.textBox_text_resource);
             this.Name = "TextResourceForm";
             this.Text = "TextResource";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TextResourceForm_FormClosing);
             this.Load += new System.EventHandler(this.TextResourceForm_Load);
             this.Shown += new System.EventHandler(this.TextResourceForm_Shown);
             this.groupBox1.ResumeLayout(false);

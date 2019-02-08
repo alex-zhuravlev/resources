@@ -10,12 +10,8 @@ using System.Windows.Forms;
 
 namespace Resources
 {
-    public partial class ColorResourceForm : Form
+    public partial class ColorResourceForm : ResourceForm
     {
-        const int DATA_PREVIEW_SIZE = 1024;
-
-        public ResourceBlock ResourceBlock { get; set; } = null;
-
         public ColorResourceForm()
         {
             InitializeComponent();
@@ -37,7 +33,7 @@ namespace Resources
 
             ColorResourceBlock block = (ColorResourceBlock)ResourceBlock;
 
-            textBox_summary.Text = block.GetShortDescription();
+            textBox_summary.Text = block.GetShortDescription() + " - 100%"; ;
 
             panel_color.BackColor = Color.FromArgb(block.ResourceColor);
 
@@ -45,6 +41,11 @@ namespace Resources
             for (int i = 0; i < block.Data.Length && i < DATA_PREVIEW_SIZE; i++)
                 hexBuilder.AppendFormat("{0:x2} ", block.Data[i]);
             textBox_resource_data_hex.Text = hexBuilder.ToString();
+        }
+
+        private void ColorResourceForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (OnClose != null) OnClose(this);
         }
     }
 }
