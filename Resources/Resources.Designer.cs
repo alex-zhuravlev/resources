@@ -55,7 +55,7 @@
             // 
             // textBox_add
             // 
-            this.textBox_add.Location = new System.Drawing.Point(6, 39);
+            this.textBox_add.Location = new System.Drawing.Point(62, 17);
             this.textBox_add.Name = "textBox_add";
             this.textBox_add.Size = new System.Drawing.Size(66, 20);
             this.textBox_add.TabIndex = 0;
@@ -69,7 +69,7 @@
             this.AddBlock.Controls.Add(this.textBox_add);
             this.AddBlock.Location = new System.Drawing.Point(12, 12);
             this.AddBlock.Name = "AddBlock";
-            this.AddBlock.Size = new System.Drawing.Size(377, 160);
+            this.AddBlock.Size = new System.Drawing.Size(377, 203);
             this.AddBlock.TabIndex = 2;
             this.AddBlock.TabStop = false;
             this.AddBlock.Text = "Add resource";
@@ -79,10 +79,10 @@
             this.tabControl_add.Controls.Add(this.tabPage_text);
             this.tabControl_add.Controls.Add(this.tabPage_color);
             this.tabControl_add.Controls.Add(this.tabPage_random);
-            this.tabControl_add.Location = new System.Drawing.Point(78, 39);
+            this.tabControl_add.Location = new System.Drawing.Point(62, 43);
             this.tabControl_add.Name = "tabControl_add";
             this.tabControl_add.SelectedIndex = 0;
-            this.tabControl_add.Size = new System.Drawing.Size(200, 100);
+            this.tabControl_add.Size = new System.Drawing.Size(309, 154);
             this.tabControl_add.TabIndex = 7;
             // 
             // tabPage_text
@@ -91,7 +91,7 @@
             this.tabPage_text.Location = new System.Drawing.Point(4, 22);
             this.tabPage_text.Name = "tabPage_text";
             this.tabPage_text.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_text.Size = new System.Drawing.Size(192, 74);
+            this.tabPage_text.Size = new System.Drawing.Size(301, 128);
             this.tabPage_text.TabIndex = 0;
             this.tabPage_text.Text = "Text";
             this.tabPage_text.UseVisualStyleBackColor = true;
@@ -101,7 +101,8 @@
             this.textBox_text.Location = new System.Drawing.Point(6, 6);
             this.textBox_text.Multiline = true;
             this.textBox_text.Name = "textBox_text";
-            this.textBox_text.Size = new System.Drawing.Size(177, 62);
+            this.textBox_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_text.Size = new System.Drawing.Size(289, 116);
             this.textBox_text.TabIndex = 1;
             // 
             // tabPage_color
@@ -110,7 +111,7 @@
             this.tabPage_color.Location = new System.Drawing.Point(4, 22);
             this.tabPage_color.Name = "tabPage_color";
             this.tabPage_color.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_color.Size = new System.Drawing.Size(192, 74);
+            this.tabPage_color.Size = new System.Drawing.Size(301, 128);
             this.tabPage_color.TabIndex = 1;
             this.tabPage_color.Text = "Color";
             this.tabPage_color.UseVisualStyleBackColor = true;
@@ -118,7 +119,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 31);
+            this.label4.Location = new System.Drawing.Point(85, 56);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 13);
             this.label4.TabIndex = 1;
@@ -129,7 +130,7 @@
             this.tabPage_random.Controls.Add(this.label2);
             this.tabPage_random.Location = new System.Drawing.Point(4, 22);
             this.tabPage_random.Name = "tabPage_random";
-            this.tabPage_random.Size = new System.Drawing.Size(192, 74);
+            this.tabPage_random.Size = new System.Drawing.Size(301, 128);
             this.tabPage_random.TabIndex = 2;
             this.tabPage_random.Text = "Random";
             this.tabPage_random.UseVisualStyleBackColor = true;
@@ -137,7 +138,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 30);
+            this.label2.Location = new System.Drawing.Point(63, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(186, 13);
             this.label2.TabIndex = 0;
@@ -146,7 +147,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(85, 20);
+            this.label3.Location = new System.Drawing.Point(7, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 3;
@@ -155,7 +156,7 @@
             // 
             // button_add
             // 
-            this.button_add.Location = new System.Drawing.Point(284, 119);
+            this.button_add.Location = new System.Drawing.Point(292, 17);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(75, 20);
             this.button_add.TabIndex = 2;
@@ -175,9 +176,9 @@
             // listBox_resources
             // 
             this.listBox_resources.FormattingEnabled = true;
-            this.listBox_resources.Location = new System.Drawing.Point(12, 182);
+            this.listBox_resources.Location = new System.Drawing.Point(12, 221);
             this.listBox_resources.Name = "listBox_resources";
-            this.listBox_resources.Size = new System.Drawing.Size(377, 212);
+            this.listBox_resources.Size = new System.Drawing.Size(377, 173);
             this.listBox_resources.TabIndex = 3;
             // 
             // button_remove
