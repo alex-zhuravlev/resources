@@ -238,6 +238,7 @@
             this.Controls.Add(this.AddBlock);
             this.Name = "Resources";
             this.Text = "Resources";
+            this.Load += new System.EventHandler(this.Resources_Load);
             this.AddBlock.ResumeLayout(false);
             this.AddBlock.PerformLayout();
             this.tabControl_add.ResumeLayout(false);

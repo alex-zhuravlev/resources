@@ -37,16 +37,28 @@ namespace Resources
             switch (tabControl_add.SelectedIndex)
             {
                 case 0: // Text
-                    newBlock = new ResourceBlock(iSizeMB, textBox_text.Text);
+                    newBlock = new TextResourceBlock(iSizeMB, textBox_text.Text);
+
+                    TextResourceForm textForm = new TextResourceForm();
+                    textForm.ResourceBlock = newBlock;
+                    textForm.Show();
                     break;
 
                 case 1: // Color
                     colorDialog.ShowDialog();
-                    newBlock = new ResourceBlock(iSizeMB, colorDialog.Color.ToArgb());
+                    newBlock = new ColorResourceBlock(iSizeMB, colorDialog.Color.ToArgb());
+
+                    ColorResourceForm colorForm = new ColorResourceForm();
+                    colorForm.ResourceBlock = newBlock;
+                    colorForm.Show();
                     break;
 
                 case 2: // Random
-                    newBlock = new ResourceBlock(iSizeMB);
+                    newBlock = new RandomResourceBlock(iSizeMB);
+
+                    RandomResourceForm randomForm = new RandomResourceForm();
+                    randomForm.ResourceBlock = newBlock;
+                    randomForm.Show();
                     break;
 
                 default:
@@ -54,14 +66,12 @@ namespace Resources
                     return;
             }
 
-            // MessageBox.Show(System.Text.Encoding.Default.GetString(newBlock.Data));
-
             // Cleanup
             textBox_add.Clear();
 
             // Add
             m_aResourceBlocks.Add(newBlock);
-            ConsoleLog(String.Format("Added new {0}MB resource block: {1}", iSizeMB, newBlock.ConsoleString));
+            ConsoleLog(String.Format("Added new resource block: {0}", newBlock.GetFullDescription()));
 
             UpdateResourcesList();
         }
@@ -73,12 +83,11 @@ namespace Resources
             for (int i = listBox_resources.SelectedIndices.Count - 1; i >= 0; i--)
             {
                 int iIndex = listBox_resources.SelectedIndices[i];
-                string sConsoleString = m_aResourceBlocks[iIndex].ConsoleString;
-                int iSizeMB = m_aResourceBlocks[iIndex].Data.Length / ResourceBlock.MB;
+                string sConsoleString = m_aResourceBlocks[iIndex].GetFullDescription();
 
                 m_aResourceBlocks.RemoveAt(iIndex);
 
-                ConsoleLog(String.Format("Removed {0}MB resource block: {1}", iSizeMB, sConsoleString));
+                ConsoleLog(String.Format("Removed resource block: {0}", sConsoleString));
             }
 
             GC.Collect();
@@ -90,16 +99,9 @@ namespace Resources
         {
             listBox_resources.Items.Clear();
 
-            int iTotalSize = 0;
-            foreach (ResourceBlock block in m_aResourceBlocks)
-            {
-                iTotalSize += block.Data.Length;
-            }
-
             for (int i = 0; i < m_aResourceBlocks.Count; i++)
             {
-                float fSizePercent = (float)m_aResourceBlocks[i].Data.Length / (float)iTotalSize * 100.0f;
-                listBox_resources.Items.Add(String.Format("N{0} - {1} - {2:F1}%", i + 1, m_aResourceBlocks[i].ToString(), fSizePercent));
+                listBox_resources.Items.Add(String.Format("N{0} - {1}", i + 1, m_aResourceBlocks[i].GetFullDescription()));
             }
         }
 
@@ -126,6 +128,11 @@ namespace Resources
         private void button_clear_console_Click(object sender, EventArgs e)
         {
             textBox_console.Clear();
+        }
+
+        private void Resources_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

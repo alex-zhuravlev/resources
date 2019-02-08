@@ -45,7 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ResourceBlock.cs" />
+    <Compile Include="ColorResourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColorResourceForm.Designer.cs">
+      <DependentUpon>ColorResourceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RandomResourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RandomResourceForm.Designer.cs">
+      <DependentUpon>RandomResourceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceBlock\RandomResourceBlock.cs" />
+    <Compile Include="ResourceBlock\ResourceBlock.cs" />
+    <Compile Include="ResourceBlock\ColorResourceBlock.cs" />
+    <Compile Include="ResourceBlock\TextResourceBlock.cs" />
     <Compile Include="Resources.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +69,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextResourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextResourceForm.Designer.cs">
+      <DependentUpon>TextResourceForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ColorResourceForm.resx">
+      <DependentUpon>ColorResourceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,8 +87,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RandomResourceForm.resx">
+      <DependentUpon>RandomResourceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <DependentUpon>Resources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextResourceForm.resx">
+      <DependentUpon>TextResourceForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,5 +109,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
